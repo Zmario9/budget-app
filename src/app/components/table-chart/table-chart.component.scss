@@ -1,0 +1,12 @@
+.tableMoney {
+    display: flex;
+    flex-flow: column wrap;
+    width: 48%;
+    border: 1px solid #6b6b6b;
+
+    &>tr{
+        display: flex;
+        flex-flow: row wrap;
+        gap:12px;
+    }
+}

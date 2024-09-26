@@ -1,1 +1,40 @@
+//fonts
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 /* You can add global styles to this file, and also import other style files */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+app-budget-view{
+    padding:{
+        top: 50px;
+    }
+    display: flex;
+    flex-flow: column wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    min-height: 250px;
+}
+
+app-budget-form{
+    display: flex;
+    flex-flow: row wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+app-table-chart{
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}

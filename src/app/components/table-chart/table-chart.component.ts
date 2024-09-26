@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { moneyMovement } from '../../models/form.model';
 
 @Component({
   selector: 'app-table-chart',
@@ -8,5 +9,6 @@ import { Component } from '@angular/core';
   styleUrl: './table-chart.component.scss'
 })
 export class TableChartComponent {
-
+  @Input() entriesList: moneyMovement[] = [];
+  constructor(){}
 }

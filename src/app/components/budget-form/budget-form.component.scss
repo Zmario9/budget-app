@@ -1,0 +1,32 @@
+@import '../sass-variables/_variables.scss';
+@import '../sass-variables/_placeholders.scss';
+
+form{
+    display: flex;
+    flex-flow: row wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    min-height: 100px;
+    &>select, &>input, &>button{
+        @extend %text-overview-settings;
+        height: $input-size-height;
+        font-size: 1em;
+    }
+    &>select{
+        border: none;
+        width: 50px;
+        font-size: 2rem;
+    }
+    &>input{
+        padding: {
+            left:12px;
+        }
+        border-radius: 5px;
+        border: 1px solid $budget-color;
+    }
+    &>button{
+
+    }
+}

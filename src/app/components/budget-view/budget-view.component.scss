@@ -1,0 +1,25 @@
+@import '../sass-variables/_variables.scss';
+@import '../sass-variables/_placeholders.scss';
+p{
+    @extend %text-overview-settings;
+}
+.money-status{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 25%;
+    gap: 12px;
+    height: $input-size-height;
+    min-width: $budget-view-width;
+    padding: 12px;
+    color: $budget-text-color;
+}
+
+.ingress {
+    background-color: $budget-ingress-color;
+}
+
+.egress{
+    background-color: $budget-egress-color;
+}

@@ -1,1 +1,27 @@
-<p>table-chart works!</p>
+<table class="tableMoney">
+  <tr>
+    <th>Ingreso</th>
+  </tr>
+  @for (entrada of entriesList; track entrada; let i = $index){
+    @if(entrada.isIncome){
+        <tr>
+            <td>{{entrada.reason}}</td>
+            <td>{{entrada.money}}</td>
+        </tr>
+    }
+  }
+</table>
+<table class="tableMoney">
+    <tr>
+        <th>Egreso</th>
+    </tr>
+    @for (entrada of entriesList; track entrada; let i = $index){
+        @if(!entrada.isIncome){
+            <tr>
+                <td>{{entrada.reason}}</td>
+                <td>{{entrada.money}}</td>
+                <td>{{entrada.percentage}}</td>
+            </tr>
+        }
+      }
+</table>

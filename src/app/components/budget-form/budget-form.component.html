@@ -1,1 +1,22 @@
-<p>budget-form works!</p>
+<form action="">
+  <select name="select" [(ngModel)]="selectedOption">
+    @for(option of options; track option; let i = $index){
+        <option [value]="option.value">{{option.name}}</option> 
+    }
+  </select>
+  <input
+    type="text"
+    name="reason"
+    id="reason"
+    placeholder="Razón"
+    [(ngModel)]="reasonInput"
+  />
+  <input
+    type="number"
+    name="money"
+    id="money"
+    placeholder="Dinero"
+    [(ngModel)]="moneyInput"
+  />
+  <button type="submit" (click)="sendForm($event)">Agregar</button>
+</form>
