@@ -24,10 +24,12 @@ export class AppComponent {
   constructor(private moneyManagement: MoneyManagementService){}
 
   ngOnInit(){
-    this.totalInc = this.moneyManagement.ingresoTotal;
-    this.totalEg = this.moneyManagement.egresoTotal;
     this.entries = this.moneyManagement.arrayMovements;
-    this.totalMoney = this.moneyManagement.totalMoney;
+    console.log(this.totalInc, this.totalEg, this.totalMoney);
+  }
+
+  checkArray(){
+    console.log(this.entries);
     console.log(this.totalInc, this.totalEg, this.totalMoney);
   }
 }

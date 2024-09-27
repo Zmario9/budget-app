@@ -18,7 +18,9 @@ export class MoneyManagementService {
   sendlist = new EventEmitter<moneyMovement[]>();
 
   addMovement(reason: string, money: number, isIncome: boolean, percentage?: number) {
-    this.arrayMovements.push(new moneyMovement(reason, money, isIncome, percentage));
+    const newMovement = new moneyMovement(reason, money, isIncome, percentage)
+    this.arrayMovements.push(newMovement);
+
     this.ingresoTotal = this.arrayMovements.reduce((a, b) => b.isIncome ? a + b.money : a + 0, 0);
     this.egresoTotal = this.arrayMovements.reduce((a, b) => !b.isIncome ? a + b.money : a + 0, 0);
     this.totalMoney = this.ingresoTotal - this.egresoTotal;

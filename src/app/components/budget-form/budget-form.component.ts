@@ -13,7 +13,7 @@ import { moneyMovement } from '../../models/form.model';
 export class BudgetFormComponent {
   public reasonInput: string = '';
   public moneyInput: number = 0;
-  public selectedOption: number = 1;
+  public selectedOption: string = "1";
   public options = [
     { name: "+", value: 1 },
     { name: "-", value: 2 }
@@ -25,11 +25,12 @@ export class BudgetFormComponent {
     if (this.reasonInput.trim() === '' && this.moneyInput === 0) {
       return alert('Rellena los campos');
     }
-
-    if (this.selectedOption === 1) {
+    console.log(this.selectedOption);
+    console.log(typeof this.selectedOption);
+    if (this.selectedOption === "1") {
       this.moneyManagement.addMovement(this.reasonInput, this.moneyInput, true);
     } else {
-      this.moneyManagement.addMovement(this.reasonInput, this.moneyInput, false);
+      this.moneyManagement.addMovement(this.reasonInput, this.moneyInput, false)
     }
     this.moneyManagement.sendlist.emit(this.moneyManagement.arrayMovements);
   }

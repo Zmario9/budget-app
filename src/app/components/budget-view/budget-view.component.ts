@@ -11,9 +11,9 @@ import { moneyMovement } from '../../models/form.model';
 })
 export class BudgetViewComponent {
   // @Input() arrayMovements: moneyMovement[] = [];
-  totalIncome: number = 0;
-  totalEgress: number = 0;
-  totalMoney: number = 0;
+  @Input() totalIncome: number = 0;
+  @Input() totalEgress: number = 0;
+  @Input() totalMoney: number = 0;
 
   constructor (private moneyManagement: MoneyManagementService){
     this.moneyManagement.sendlist.subscribe((data) => {
@@ -23,7 +23,9 @@ export class BudgetViewComponent {
     });
   }
 
-  // ngOnInit(){
-
-  // }
+  ngOnInit(){
+    this.totalMoney = this.moneyManagement.totalMoney;  
+    this.totalIncome = this.moneyManagement.ingresoTotal;
+    this.totalEgress = this.moneyManagement.egresoTotal;
+  }
 }
