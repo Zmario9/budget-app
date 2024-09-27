@@ -25,11 +25,9 @@ export class AppComponent {
 
   ngOnInit(){
     this.entries = this.moneyManagement.arrayMovements;
-    console.log(this.totalInc, this.totalEg, this.totalMoney);
   }
 
   checkArray(){
     console.log(this.entries);
-    console.log(this.totalInc, this.totalEg, this.totalMoney);
   }
 }

@@ -22,7 +22,7 @@ export class BudgetFormComponent {
   constructor(public moneyManagement: MoneyManagementService) { }
 
   sendForm(select: Event) {
-    if (this.reasonInput.trim() === '' && this.moneyInput === 0) {
+    if (this.reasonInput.trim() === '' || this.moneyInput <= 0) {
       return alert('Rellena los campos');
     }
     console.log(this.selectedOption);
