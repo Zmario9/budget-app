@@ -1,5 +1,5 @@
-<p>Presupuesto Disponible:</p>
-<p>${{ totalMoney }}</p>
+<p class="money-status-text">Presupuesto Disponible:</p>
+<p class="budget-text" [ngClass]="totalMoney < 0 ? 'egress-text' : 'ingress-text'">${{ totalMoney }}</p>
 <div class="money-status ingress">
   <p>Ingresos</p>
   <p>${{ totalIncome }}</p>

@@ -13,20 +13,32 @@ form{
         @extend %text-overview-settings;
         height: $input-size-height;
         font-size: 1em;
+        transition: .5s;
     }
     &>select{
-        border: none;
         width: 50px;
         font-size: 2rem;
+        border-radius: 5px;
+        &:focus{
+            outline: none;
+        }
     }
     &>input{
         padding: {
             left:12px;
         }
         border-radius: 5px;
-        border: 1px solid $budget-color;
+        // border: 1px solid $budget-color;
     }
     &>button{
-
+        border-radius: 5px;
     }
+
+}
+
+.ingress{
+    border: 3px solid $budget-ingress-color;
+}
+.egress{
+    border: 3px solid $budget-egress-color;
 }

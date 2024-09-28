@@ -9,6 +9,7 @@
 }
 
 app-budget-view{
+    background-image: url('../public/paintingBG.png');
     padding:{
         top: 50px;
     }
@@ -19,9 +20,11 @@ app-budget-view{
     align-items: center;
     width: 100vw;
     min-height: 250px;
+    padding: 12px;
 }
 
 app-budget-form{
+    background-image: url('../public/anotherpaintBG.png');
     display: flex;
     flex-flow: row wrap;
     gap: 12px;

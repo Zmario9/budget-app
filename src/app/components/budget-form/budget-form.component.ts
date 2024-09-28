@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MoneyManagementService } from '../../services/money-management.service';
 import { moneyMovement } from '../../models/form.model';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-budget-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, NgClass],
   templateUrl: './budget-form.component.html',
   styleUrl: './budget-form.component.scss'
 })
@@ -21,7 +22,7 @@ export class BudgetFormComponent {
 
   constructor(public moneyManagement: MoneyManagementService) { }
 
-  sendForm(select: Event) {
+  sendForm() {
     if (this.reasonInput.trim() === '' || this.moneyInput <= 0) {
       return alert('Rellena los campos');
     }
@@ -30,7 +31,8 @@ export class BudgetFormComponent {
     if (this.selectedOption === "1") {
       this.moneyManagement.addMovement(this.reasonInput, this.moneyInput, true);
     } else {
-      this.moneyManagement.addMovement(this.reasonInput, this.moneyInput, false)
+      //this.moneyInput / this.moneyManagement.ingresoTotal * 100
+      this.moneyManagement.addMovement(this.reasonInput, this.moneyInput, false);
     }
     this.moneyManagement.sendlist.emit(this.moneyManagement.arrayMovements);
   }

@@ -3,6 +3,14 @@
 p{
     @extend %text-overview-settings;
 }
+.money-status-text{
+    color: $budget-text-color;  
+}
+.budget-text{
+    font-size: 5.9em; 
+    transition: .5s;
+}
+
 .money-status{
     display: flex;
     flex-flow: row wrap;
@@ -14,6 +22,9 @@ p{
     min-width: $budget-view-width;
     padding: 12px;
     color: $budget-text-color;
+    p{
+        font-size: 1.6em;
+    }
 }
 
 .ingress {
@@ -22,4 +33,12 @@ p{
 
 .egress{
     background-color: $budget-egress-color;
+}
+
+.ingress-text{
+    color: $budget-ingress-color;
+}
+
+.egress-text{
+    color: $budget-egress-color;
 }

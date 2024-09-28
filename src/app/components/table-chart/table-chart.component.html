@@ -1,26 +1,30 @@
 <table class="tableMoney">
   <tr>
-    <th>Ingreso</th>
+    <th class="title-table">Ingreso</th>
   </tr>
   @for (entrada of entriesList; track entrada; let i = $index){
     @if(entrada.isIncome){
         <tr>
             <td>{{entrada.reason}}</td>
-            <td>{{entrada.money}}</td>
+            <td>{{entrada.money}}$</td>
+            <button (click)="deleteRegistry(entrada)">Eliminar registro</button>
         </tr>
     }
   }
 </table>
 <table class="tableMoney">
     <tr>
-        <th>Egreso</th>
+        <th class="title-table">Egreso</th>
     </tr>
     @for (entrada of entriesList; track entrada; let i = $index){
         @if(!entrada.isIncome){
             <tr>
                 <td>{{entrada.reason}}</td>
-                <td>{{entrada.money}}</td>
-                <td>{{entrada.percentage}}</td>
+                <td>-{{entrada.money}}$</td>
+                @if (entrada.percentage != numInf){
+                  <td class="egress-percentage">{{entrada.percentage}}%</td>
+                }
+                <button (click)="deleteRegistry(entrada)">Eliminar registro</button>
             </tr>
         }
       }

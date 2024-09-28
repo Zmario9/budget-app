@@ -1,12 +1,27 @@
+@import '../sass-variables/_variables.scss';
+@import '../sass-variables/_placeholders.scss';
 .tableMoney {
     display: flex;
     flex-flow: column wrap;
     width: 48%;
     border: 1px solid #6b6b6b;
-
+    min-height: 300px;
+    overflow: scroll;
     &>tr{
         display: flex;
         flex-flow: row wrap;
         gap:12px;
+        &>.title-table{
+            @extend %text-overview-settings;
+            font-size: 1.5em;
+        }
+        td{
+            @extend %text-overview-settings;
+            font-size: 1.2em;
+        }
+        .egress-percentage{
+            border-radius: 5px;
+            background-color: $budget-egress-color;
+        }
     }
 }

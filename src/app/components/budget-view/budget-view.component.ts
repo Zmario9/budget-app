@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { MoneyManagementService } from '../../services/money-management.service';
 import { moneyMovement } from '../../models/form.model';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-budget-view',
   standalone: true,
-  imports: [],
+  imports: [NgClass],
   templateUrl: './budget-view.component.html',
   styleUrl: './budget-view.component.scss'
 })

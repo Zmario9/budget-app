@@ -3,7 +3,7 @@ export class moneyMovement {
         this.reason = reason;
         this.money = money;
         this.isIncome = isIncome;
-        if (!isIncome) {
+        if (isIncome) {
             this.percentage = percentage;
         }
     }
