@@ -15,11 +15,13 @@ export class BudgetViewComponent {
   @Input() totalIncome: number = 0;
   @Input() totalEgress: number = 0;
   @Input() totalMoney: number = 0;
+  @Input() percentTotal: number = 0;
 
   constructor (private moneyManagement: MoneyManagementService){
     this.moneyManagement.sendlist.subscribe((data) => {
       this.totalIncome = data.reduce((a, b) => b.isIncome ? a + b.money : a + 0, 0);
       this.totalEgress = data.reduce((a, b) => !b.isIncome ? a + b.money : a + 0, 0);
+      this.percentTotal = ((this.totalEgress * 100) / this.totalIncome);
       this.totalMoney = this.totalIncome - this.totalEgress;
     });
   }
@@ -28,5 +30,6 @@ export class BudgetViewComponent {
     this.totalMoney = this.moneyManagement.totalMoney;  
     this.totalIncome = this.moneyManagement.ingresoTotal;
     this.totalEgress = this.moneyManagement.egresoTotal;
+    this.percentTotal = this.moneyManagement.totalpercentage;
   }
 }

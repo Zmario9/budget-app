@@ -19,6 +19,7 @@ export class TableChartComponent {
 
   }
 
+
   deleteRegistry(element: moneyMovement){
     const index = this.entriesList.indexOf(element);
     if (index > -1) {

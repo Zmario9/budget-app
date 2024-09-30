@@ -6,7 +6,7 @@
     @if(entrada.isIncome){
         <tr>
             <td>{{entrada.reason}}</td>
-            <td>{{entrada.money}}$</td>
+            <td>{{entrada.money.toFixed(2)}}$</td>
             <button (click)="deleteRegistry(entrada)"><ion-icon name="close-circle-outline"></ion-icon></button>
         </tr>
     }
@@ -20,7 +20,7 @@
         @if(!entrada.isIncome){
             <tr>
                 <td>{{entrada.reason}}</td>
-                <td>-{{entrada.money}}$</td>
+                <td>-{{entrada.money.toFixed(2)}}$</td>
                 @if (entrada.percentage != numInf){
                   <td class="egress-percentage">{{entrada.percentage}}%</td>
                 }

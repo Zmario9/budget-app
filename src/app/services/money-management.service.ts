@@ -22,12 +22,14 @@ export class MoneyManagementService {
         element.percentage = (Number(value));
         console.log(element.percentage);
       }
+      console.log(element);
     });
   }
   ingresoTotal: number = this.arrayMovements.reduce((a, b) => b.isIncome ? a + b.money : a + 0, 0);
   egresoTotal: number = this.arrayMovements.reduce((a, b) => !b.isIncome ? a + b.money : a + 0, 0);
   totalMoney: number = this.ingresoTotal - this.egresoTotal;
   percentage: number = 0;
+  totalpercentage: number = ((this.egresoTotal * 100) / this.ingresoTotal);;
 
 
 
@@ -40,6 +42,7 @@ export class MoneyManagementService {
     this.ingresoTotal = this.arrayMovements.reduce((a, b) => b.isIncome ? a + b.money : a + 0, 0);
     this.egresoTotal = this.arrayMovements.reduce((a, b) => !b.isIncome ? a + b.money : a + 0, 0);
     this.totalMoney = this.ingresoTotal - this.egresoTotal;
+    this.totalpercentage = ((this.egresoTotal * 100) / this.ingresoTotal);
 
     this.arrayMovements.forEach(element => {
       if(!element.isIncome){
@@ -48,8 +51,10 @@ export class MoneyManagementService {
         console.log(element.percentage);
       }
     });
+
     console.log(this.arrayMovements);
     console.log(this.ingresoTotal, this.egresoTotal, this.totalMoney);
+    console.log("Porcentaje total de egresos: " + this.totalpercentage);
   }
 
   deleteRegistry(element: moneyMovement) {

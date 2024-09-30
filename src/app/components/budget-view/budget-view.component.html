@@ -1,10 +1,10 @@
 <p class="money-status-text">Presupuesto Disponible:</p>
-<p class="budget-text" [ngClass]="totalMoney < 0 ? 'egress-text' : 'ingress-text'">${{ totalMoney }}</p>
+<p class="budget-text" [ngClass]="totalMoney < 0 ? 'egress-text' : 'ingress-text'">${{ totalMoney.toFixed(2) }}</p>
 <div class="money-status ingress">
   <p>Ingresos</p>
-  <p>${{ totalIncome }}</p>
+  <p>${{ totalIncome.toFixed(2) }}</p>
 </div>
 <div class="money-status egress">
   <p>Egresos</p>
-  <p>${{ totalEgress }}</p>
+  <p>${{ totalEgress.toFixed(2) }} <span>({{ percentTotal.toFixed(2) }}%)</span></p>
 </div>
