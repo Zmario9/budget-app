@@ -3,8 +3,9 @@ export class moneyMovement {
         this.reason = reason;
         this.money = money;
         this.isIncome = isIncome;
-        if (isIncome) {
-            this.percentage = percentage;
-        }
+        // if (!isIncome) {
+        //     this.percentage = percentage;
+        // }
+        this.percentage = this.isIncome ? 0 : percentage;
     }
 }

@@ -7,6 +7,12 @@
     margin: 0;
     padding: 0;
 }
+html{
+    width: 100%;
+    body{
+        width: 100%;
+    }
+}
 
 app-budget-view{
     background-image: url('../public/paintingBG.png');
@@ -18,7 +24,7 @@ app-budget-view{
     gap: 12px;
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     min-height: 250px;
     padding: 12px;
 }
@@ -30,7 +36,7 @@ app-budget-form{
     gap: 12px;
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    width: 100%;
 }
 
 app-table-chart{
@@ -39,5 +45,12 @@ app-table-chart{
     gap: 12px;
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    width: 100%;
+}
+
+@media only screen and (max-width: 400px){
+    app-budget-view{
+        width: 100%;
+        padding: 0;
+    }
 }

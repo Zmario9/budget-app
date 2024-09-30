@@ -5,6 +5,7 @@ import { moneyMovement } from '../models/form.model';
   providedIn: 'root'
 })
 export class MoneyManagementService {
+  //Obtengo los datos que vengan del backend
   arrayMovements: moneyMovement[] = [
     new moneyMovement('Comida', 100, true),
     new moneyMovement('Cena', 250, true),
@@ -12,15 +13,17 @@ export class MoneyManagementService {
   ];
 
   constructor() { 
+    //Defino el total de ingresos y egresos con un foreach para cada elemento
     this.arrayMovements.forEach(element => {
+      //Si el registro no es de ingreso
       if(!element.isIncome){
+        //Defino su propiedad de porcentaje con respecto al ingreso total
         let value = ((element.money / this.ingresoTotal) * 100).toFixed(2);
         element.percentage = (Number(value));
         console.log(element.percentage);
       }
     });
   }
-
   ingresoTotal: number = this.arrayMovements.reduce((a, b) => b.isIncome ? a + b.money : a + 0, 0);
   egresoTotal: number = this.arrayMovements.reduce((a, b) => !b.isIncome ? a + b.money : a + 0, 0);
   totalMoney: number = this.ingresoTotal - this.egresoTotal;
@@ -68,8 +71,4 @@ export class MoneyManagementService {
     console.log(this.arrayMovements);
     console.log(this.ingresoTotal);
   }
-}
-
-const getIfNumberIsFinite = (value: number, percentage: number) => {
-
 }
