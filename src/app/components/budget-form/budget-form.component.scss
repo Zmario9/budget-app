@@ -23,6 +23,7 @@ form{
         // width: 100%;
     }
     &>select{
+        min-width: 50px;
         justify-self: end;
         width: 25%;
         font-size: 2rem;

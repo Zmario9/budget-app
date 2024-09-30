@@ -1,20 +1,20 @@
-<table class="tableMoney">
+<table class="tableMoney ingress-table">
   <tr>
-    <th class="title-table">Ingreso</th>
+    <th class="title-table ingress-text">Ingreso</th>
   </tr>
   @for (entrada of entriesList; track entrada; let i = $index){
     @if(entrada.isIncome){
         <tr>
             <td>{{entrada.reason}}</td>
             <td>{{entrada.money}}$</td>
-            <button (click)="deleteRegistry(entrada)">Eliminar registro</button>
+            <button (click)="deleteRegistry(entrada)"><ion-icon name="close-circle-outline"></ion-icon></button>
         </tr>
     }
   }
 </table>
-<table class="tableMoney">
+<table class="tableMoney egress-table">
     <tr>
-        <th class="title-table">Egreso</th>
+        <th class="title-table egress-text">Egreso</th>
     </tr>
     @for (entrada of entriesList; track entrada; let i = $index){
         @if(!entrada.isIncome){
@@ -24,7 +24,7 @@
                 @if (entrada.percentage != numInf){
                   <td class="egress-percentage">{{entrada.percentage}}%</td>
                 }
-                <button (click)="deleteRegistry(entrada)">Eliminar registro</button>
+                <button (click)="deleteRegistry(entrada)"><ion-icon name="close-circle-outline"></ion-icon></button>
             </tr>
         }
       }

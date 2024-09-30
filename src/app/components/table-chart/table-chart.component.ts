@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { moneyMovement } from '../../models/form.model';
 import { MoneyManagementService } from '../../services/money-management.service';
 import { NgClass, NgIf } from '@angular/common';
@@ -9,7 +9,8 @@ import { NgClass, NgIf } from '@angular/common';
   standalone: true,
   imports: [NgClass, NgIf],
   templateUrl: './table-chart.component.html',
-  styleUrl: './table-chart.component.scss'
+  styleUrl: './table-chart.component.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class TableChartComponent {
   @Input() entriesList: moneyMovement[] = [];
