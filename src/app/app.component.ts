@@ -21,7 +21,9 @@ export class AppComponent {
   public totalEg: number = 0;
   public totalInc : number = 0;
   public totalMoney: number = 0;
-  constructor(private moneyManagement: MoneyManagementService){}
+  constructor(private moneyManagement: MoneyManagementService){
+    
+  }
 
   ngOnInit(){
     this.entries = this.moneyManagement.arrayMovements;

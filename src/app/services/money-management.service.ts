@@ -49,10 +49,10 @@ export class MoneyManagementService {
         console.log(element.percentage);
       }
     });
-
     console.log(this.arrayMovements);
     console.log(this.ingresoTotal, this.egresoTotal, this.totalMoney);
     console.log("Porcentaje total de egresos: " + this.totalpercentage);
+    return this.arrayMovements, this.ingresoTotal, this.egresoTotal, this.totalMoney;
   }
 
   deleteRegistry(element: moneyMovement) {
