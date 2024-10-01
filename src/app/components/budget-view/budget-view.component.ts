@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { MoneyManagementService } from '../../services/money-management.service';
 import { moneyMovement } from '../../models/form.model';
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-budget-view',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, NgIf],
   templateUrl: './budget-view.component.html',
   styleUrl: './budget-view.component.scss'
 })
@@ -16,6 +16,8 @@ export class BudgetViewComponent {
   @Input() totalEgress: number = 0;
   @Input() totalMoney: number = 0;
   @Input() percentTotal: number = 0;
+  infiniNumber: number = Infinity;
+  nanNumber: number = NaN;
 
   constructor (private moneyManagement: MoneyManagementService){
     this.moneyManagement.sendlist.subscribe((data) => {
@@ -31,5 +33,11 @@ export class BudgetViewComponent {
     this.totalIncome = this.moneyManagement.ingresoTotal;
     this.totalEgress = this.moneyManagement.egresoTotal;
     this.percentTotal = this.moneyManagement.totalpercentage;
+  }
+  numberIsNan(value: number){
+    if(isNaN(value)){
+      return true;
+    }
+    return false;
   }
 }

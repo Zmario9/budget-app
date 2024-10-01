@@ -6,5 +6,10 @@
 </div>
 <div class="money-status egress">
   <p>Egresos</p>
-  <p>${{ totalEgress.toFixed(2) }} <span>({{ percentTotal.toFixed(2) }}%)</span></p>
+  <p>
+    ${{ totalEgress.toFixed(2) }} 
+    @if(percentTotal != infiniNumber && percentTotal != 0  && !numberIsNan(percentTotal)){
+      <span>({{ percentTotal.toFixed(2) }}%)</span>
+    }
+  </p>
 </div>
