@@ -18,8 +18,7 @@ export class MoneyManagementService {
       //Si el registro no es de ingreso
       if(!element.isIncome){
         //Defino su propiedad de porcentaje con respecto al ingreso total
-        let value = ((element.money / this.ingresoTotal) * 100).toFixed(2);
-        element.percentage = (Number(value));
+        element.percentage = (element.money / this.ingresoTotal);
         console.log(element.percentage);
       }
       console.log(element);
@@ -29,7 +28,7 @@ export class MoneyManagementService {
   egresoTotal: number = this.arrayMovements.reduce((a, b) => !b.isIncome ? a + b.money : a + 0, 0);
   totalMoney: number = this.ingresoTotal - this.egresoTotal;
   percentage: number = 0;
-  totalpercentage: number = ((this.egresoTotal * 100) / this.ingresoTotal);;
+  totalpercentage: number = this.egresoTotal / this.ingresoTotal;
 
 
 
@@ -42,12 +41,11 @@ export class MoneyManagementService {
     this.ingresoTotal = this.arrayMovements.reduce((a, b) => b.isIncome ? a + b.money : a + 0, 0);
     this.egresoTotal = this.arrayMovements.reduce((a, b) => !b.isIncome ? a + b.money : a + 0, 0);
     this.totalMoney = this.ingresoTotal - this.egresoTotal;
-    this.totalpercentage = ((this.egresoTotal * 100) / this.ingresoTotal);
+    this.totalpercentage = this.egresoTotal / this.ingresoTotal;
 
     this.arrayMovements.forEach(element => {
       if(!element.isIncome){
-        let value = ((element.money / this.ingresoTotal) * 100).toFixed(2);
-        element.percentage = (Number(value));
+        element.percentage = (element.money / this.ingresoTotal);
         console.log(element.percentage);
       }
     });
@@ -68,8 +66,7 @@ export class MoneyManagementService {
 
     this.arrayMovements.forEach(element => {
       if(!element.isIncome){
-        let percent:string = ((element.money / this.ingresoTotal) * 100).toFixed(2);
-        element.percentage = Number(percent);
+        element.percentage = element.money / this.ingresoTotal;
         console.log(element.percentage);
       }
     });

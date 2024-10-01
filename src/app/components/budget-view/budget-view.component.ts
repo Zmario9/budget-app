@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { MoneyManagementService } from '../../services/money-management.service';
-import { moneyMovement } from '../../models/form.model';
-import { NgClass, NgIf } from '@angular/common';
+//Common module trae los pipes por defecto
+import { NgClass, NgIf, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-budget-view',
   standalone: true,
-  imports: [NgClass, NgIf],
+  imports: [NgClass, NgIf, CommonModule],
   templateUrl: './budget-view.component.html',
   styleUrl: './budget-view.component.scss'
 })
@@ -23,7 +23,7 @@ export class BudgetViewComponent {
     this.moneyManagement.sendlist.subscribe((data) => {
       this.totalIncome = data.reduce((a, b) => b.isIncome ? a + b.money : a + 0, 0);
       this.totalEgress = data.reduce((a, b) => !b.isIncome ? a + b.money : a + 0, 0);
-      this.percentTotal = ((this.totalEgress * 100) / this.totalIncome);
+      this.percentTotal = (this.totalEgress / this.totalIncome);
       this.totalMoney = this.totalIncome - this.totalEgress;
     });
   }

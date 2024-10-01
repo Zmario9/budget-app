@@ -26,8 +26,4 @@ export class AppComponent {
   ngOnInit(){
     this.entries = this.moneyManagement.arrayMovements;
   }
-
-  checkArray(){
-    console.log(this.entries);
-  }
 }

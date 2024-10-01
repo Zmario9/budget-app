@@ -6,7 +6,7 @@
     @if(entrada.isIncome){
         <tr>
             <td class="ingress-text">{{entrada.reason}}</td>
-            <td class="ingress-text">{{entrada.money.toFixed(2)}}$</td>
+            <td class="ingress-text">{{entrada.money | currency: 'USD'}}$</td>
             <button (click)="deleteRegistry(entrada)"><ion-icon name="close-circle-outline"></ion-icon></button>
         </tr>
     }
@@ -20,9 +20,9 @@
         @if(!entrada.isIncome){
             <tr>
                 <td class="egress-text">{{entrada.reason}}</td>
-                <td class="egress-text">-{{entrada.money.toFixed(2)}}$</td>
+                <td class="egress-text">-{{entrada.money | currency: 'USD'}}$</td>
                 @if (entrada.percentage != numInf){
-                  <td class="egress-percentage">{{entrada.percentage}}%</td>
+                  <td class="egress-percentage">{{entrada.percentage | percent}}</td>
                 }
                 <button (click)="deleteRegistry(entrada)"><ion-icon name="close-circle-outline"></ion-icon></button>
             </tr>
