@@ -36,5 +36,4 @@ export class BudgetFormComponent {
     }
     this.moneyManagement.sendlist.emit(this.moneyManagement.arrayMovements);
   }
-
 }

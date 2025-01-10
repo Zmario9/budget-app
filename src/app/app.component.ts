@@ -8,6 +8,7 @@ import { TableChartComponent } from './components/table-chart/table-chart.compon
 import { moneyMovement } from './models/form.model';
 //Servicios
 import { MoneyManagementService } from './services/money-management.service';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -22,10 +23,6 @@ export class AppComponent {
   public totalInc : number = 0;
   public totalMoney: number = 0;
   constructor(private moneyManagement: MoneyManagementService){
-    
-  }
-
-  ngOnInit(){
     this.entries = this.moneyManagement.arrayMovements;
   }
 }

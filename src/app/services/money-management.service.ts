@@ -1,5 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { moneyMovement } from '../models/form.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,21 +8,26 @@ import { moneyMovement } from '../models/form.model';
 export class MoneyManagementService {
   //Obtengo los datos que vengan del backend
   arrayMovements: moneyMovement[] = [
-    new moneyMovement('Comida', 100, true),
-    new moneyMovement('Cena', 250, true),
-    new moneyMovement('Trabajo', 300, false),
   ];
 
-  constructor() { 
-    //Defino el total de ingresos y egresos con un foreach para cada elemento
-    this.arrayMovements.forEach(element => {
-      //Si el registro no es de ingreso
-      if(!element.isIncome){
-        //Defino su propiedad de porcentaje con respecto al ingreso total
-        element.percentage = (element.money / this.ingresoTotal);
-        console.log(element.percentage);
-      }
-      console.log(element);
+  constructor(Http: HttpClient) {
+    Http.get<moneyMovement[]>('http://localhost:3000/api/modules/moneyMovements').subscribe((response: moneyMovement[]) => {
+      const res = response;
+      res.map(element => {
+        this.arrayMovements.push(element);
+        
+      });
+      //Defino el total de ingresos y egresos con un foreach para cada elemento
+      // this.arrayMovements.forEach(element => {
+      //   //Si el registro no es de ingreso
+      //   if (!element.isIncome) {
+      //     //Defino su propiedad de porcentaje con respecto al ingreso total
+      //     element.percentage = (element.money / this.ingresoTotal);
+      //     console.log(element.percentage);
+      //   }
+      //   console.log(element);
+      // });
+      console.log(this.arrayMovements);
     });
   }
   ingresoTotal: number = this.arrayMovements.reduce((a, b) => b.isIncome ? a + b.money : a + 0, 0);
@@ -29,8 +35,6 @@ export class MoneyManagementService {
   totalMoney: number = this.ingresoTotal - this.egresoTotal;
   percentage: number = 0;
   totalpercentage: number = this.egresoTotal / this.ingresoTotal;
-
-
 
   sendlist = new EventEmitter<moneyMovement[]>();
 
@@ -44,7 +48,7 @@ export class MoneyManagementService {
     this.totalpercentage = this.egresoTotal / this.ingresoTotal;
 
     this.arrayMovements.forEach(element => {
-      if(!element.isIncome){
+      if (!element.isIncome) {
         element.percentage = (element.money / this.ingresoTotal);
         console.log(element.percentage);
       }
@@ -65,7 +69,7 @@ export class MoneyManagementService {
     this.ingresoTotal = this.arrayMovements.reduce((a, b) => b.isIncome ? a + b.money : a + 0, 0);
 
     this.arrayMovements.forEach(element => {
-      if(!element.isIncome){
+      if (!element.isIncome) {
         element.percentage = element.money / this.ingresoTotal;
         console.log(element.percentage);
       }
