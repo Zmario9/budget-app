@@ -25,4 +25,24 @@ export class AppComponent {
   constructor(private moneyManagement: MoneyManagementService){
     this.entries = this.moneyManagement.arrayMovements;
   }
+
+  getTotalIngress(){
+    let totalIncome: number = this.entries.reduce((a, b) => b.isIncome ? a + b.money : a + 0, 0);
+    return totalIncome;
+  }
+
+  getTotalEgress(){
+    let totalEgress: number = this.entries.reduce((a, b) => !b.isIncome ? a + b.money : a + 0, 0);
+    return totalEgress;
+  }
+
+  getTotalPercernt(){
+    let totalPercent: number =  (this.getTotalEgress() / this.getTotalIngress());
+    return totalPercent;
+  }
+
+  getTotalMoney(){
+    let totalMoney: number = this.getTotalIngress() - this.getTotalEgress();
+    return totalMoney;
+  }
 }

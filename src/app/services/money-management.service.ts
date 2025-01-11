@@ -7,26 +7,22 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MoneyManagementService {
   //Obtengo los datos que vengan del backend
-  arrayMovements: moneyMovement[] = [
-  ];
+  public arrayMovements: moneyMovement[] = [];
 
   constructor(Http: HttpClient) {
     Http.get<moneyMovement[]>('http://localhost:3000/api/modules/moneyMovements').subscribe((response: moneyMovement[]) => {
       const res = response;
-      res.map(element => {
-        this.arrayMovements.push(element);
-        
-      });
+      res.map(element => this.arrayMovements.push(element));
       //Defino el total de ingresos y egresos con un foreach para cada elemento
-      // this.arrayMovements.forEach(element => {
-      //   //Si el registro no es de ingreso
-      //   if (!element.isIncome) {
-      //     //Defino su propiedad de porcentaje con respecto al ingreso total
-      //     element.percentage = (element.money / this.ingresoTotal);
-      //     console.log(element.percentage);
-      //   }
-      //   console.log(element);
-      // });
+      this.arrayMovements.forEach(element => {
+        //Si el registro no es de ingreso
+        if (!element.isIncome) {
+          //Defino su propiedad de porcentaje con respecto al ingreso total
+          element.percentage = (element.money / this.ingresoTotal);
+          console.log(element.percentage);
+        }
+        console.log(element);
+      });
       console.log(this.arrayMovements);
     });
   }
