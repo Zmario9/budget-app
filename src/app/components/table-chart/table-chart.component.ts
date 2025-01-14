@@ -18,16 +18,7 @@ export class TableChartComponent {
   constructor(private moneyManagement: MoneyManagementService){
 
   }
-
-
   deleteRegistry(element: moneyMovement){
-    const index = this.entriesList.indexOf(element);
-    if (index > -1) {
-      console.log(index);
-      this.entriesList.splice(index, 1);
-    }
-    console.log(this.entriesList);
-
     this.moneyManagement.deleteRegistry(element);
     // console.log(element.percentage);
     this.moneyManagement.sendlist.emit(this.moneyManagement.arrayMovements);

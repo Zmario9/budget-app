@@ -9,7 +9,7 @@
   <p>
     {{ totalEgress.toFixed(2) | currency: 'USD' }} 
     @if(percentTotal != infiniNumber && percentTotal != 0  && !numberIsNan(percentTotal)){
-      <span>({{ percentTotal | percent }})</span>
+      <span>({{ percentTotal.toFixed(2) | percent }})</span>
     }
   </p>
 </div>

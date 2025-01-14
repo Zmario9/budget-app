@@ -37,7 +37,7 @@ export class AppComponent {
   }
 
   getTotalPercernt(){
-    let totalPercent: number =  (this.getTotalEgress() / this.getTotalIngress());
+    let totalPercent: number = (this.getTotalEgress()/this.getTotalIngress());//(this.getTotalEgress() / this.getTotalIngress());
     return totalPercent;
   }
 
@@ -45,4 +45,13 @@ export class AppComponent {
     let totalMoney: number = this.getTotalIngress() - this.getTotalEgress();
     return totalMoney;
   }
+
+
+  // getPercentElement(){
+  //   this.entries.forEach(element => {
+  //     if (!element.isIncome) {
+  //       element.percentage = element.money / this.getTotalIngress();
+  //     }
+  //   });
+  // }
 }
