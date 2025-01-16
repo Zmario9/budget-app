@@ -27,7 +27,7 @@
     [(ngModel)]="moneyInput"
   />
   <button
-    [ngClass]="selectedOption === '1' ? 'ingress' : 'egress'"
+    [ngClass]="selectedOption === '1' ? 'ingress bg-ingress' : 'egress bg-egress'"
     type="submit"
     (click)="sendForm()"
   >

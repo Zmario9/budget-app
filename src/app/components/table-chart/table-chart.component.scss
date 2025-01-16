@@ -8,22 +8,28 @@
   width: 45%;
   border: 1px solid #6b6b6b;
   min-height: 300px;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   padding: 5px;
   & > tr {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+    .eg-txt-conf{
+      width: 50%;
+    }
+    border: {
+      bottom: 1px solid rgba(255, 255, 255, 0.18);
+    };
     button{
       background-color: transparent;
       border: 0;
       ion-icon{
-        height: 100%;
         color: $budget-egress-color;
         font-size: 1.5em;
         cursor: pointer;
         transition: .5s;
-
         &:hover{
           transform: scale(1.5);
         }
@@ -41,11 +47,12 @@
     }
     td {
       @extend %text-overview-settings;
-      font-size: 1.2em;
+      font-size: .8em;
     }
     .egress-percentage {
       border-radius: 5px;
       background-color: $budget-egress-color;
+      height: 50%;
     }
   }
 }
@@ -61,20 +68,66 @@
   @include glass;
 }
 
-// @media only screen and (max-width: 500px) {
-//   .tableMoney {
-//     display
-//     width: 100%;
-//   }
-// }
+.ingressBtn, .egressBtn {
+  cursor: pointer;
+  @extend %text-overview-settings;
+  border-radius: 5px;
+}
+
+.ingressBtn{
+  color: $budget-ingress-color;
+  border: 1px solid $budget-ingress-color;
+  &:hover{
+    background-color: $budget-ingress-color;
+    color: white;
+  }
+}
+.egressBtn{
+  color: $budget-egress-color;
+  border: 1px solid $budget-egress-color;
+  &:hover{
+    background-color: $budget-egress-color;
+    color: white;
+  }
+}
+
+.UI-buttons{
+  display: flex;
+  flex-flow: row nowrap;
+  cursor: pointer;
+  width: 100%;
+  justify-content: space-evenly;
+  &> button{
+    @extend %text-overview-settings;
+    width: 49%;
+    min-height: 5vh;
+  }
+}
 
 @media only screen and (max-width: 680px){
   .tableMoney{
-    width: 80%;
+    width: 100%;
+    max-height: 370px;
     &>tr{
       justify-content: space-between;
       &>td{
         font-size: 1em;
+      }
+    }
+  }
+  .UI-buttons{
+    padding: {
+      bottom: 45%;
+    }
+  }
+}
+
+@media only screen and (min-width: 681px) and (max-width: 1000px){
+  .tableMoney{
+    &>tr{
+      justify-content: space-between;
+      &>td{
+        font-size: 1.1em;
       }
     }
   }

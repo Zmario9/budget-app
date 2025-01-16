@@ -1,31 +1,90 @@
-<table class="tableMoney ingress-table">
+<table class="tableMoney ingress-table" *ngIf="sizeScreen > 500">
   <tr>
     <th class="title-table ingress-text">Ingreso</th>
   </tr>
   @for (entrada of entriesList; track entrada; let i = $index){
-    @if(entrada.isIncome){
-        <tr>
-            <td class="ingress-text">{{entrada.reason}}</td>
-            <td class="ingress-text">{{entrada.money | currency: 'USD'}}$</td>
-            <button (click)="deleteRegistry(entrada)"><ion-icon name="close-circle-outline"></ion-icon></button>
-        </tr>
+  @if(entrada.isIncome){
+  <tr>
+    <td class="ingress-text eg-txt-conf">{{ entrada.reason }}</td>
+    <td class="ingress-text">{{ entrada.money | currency : "USD" }}$</td>
+    <button class="btnDelete" (click)="deleteRegistry(entrada)">
+      <ion-icon name="close-circle-outline"></ion-icon>
+    </button>
+  </tr>
+  } }
+</table>
+<table class="tableMoney egress-table" *ngIf="sizeScreen > 500">
+  <tr>
+    <th class="title-table egress-text">Egreso</th>
+  </tr>
+  @for (entrada of entriesList; track entrada; let i = $index){
+  @if(!entrada.isIncome){
+  <tr>
+    <td class="egress-text eg-txt-conf">{{ entrada.reason }}</td>
+    <td class="egress-text">-{{ entrada.money | currency : "USD" }}$</td>
+    @if (entrada.percentage != numInf){
+    <td class="egress-percentage">{{ entrada.percentage | percent }}</td>
     }
+    <button class="btnDelete" (click)="deleteRegistry(entrada)">
+      <ion-icon name="close-circle-outline"></ion-icon>
+    </button>
+  </tr>
+  } }
+</table>
+
+<table class="tableMoney ingress-table" *ngIf="sizeScreen <= 500">
+  <tr>
+    <th
+      class="title-table"
+      [ngClass]="isIncome ? 'ingress-text' : 'egress-text'"
+    >
+      {{ isIncome ? "Ingreso" : "Egreso" }}
+    </th>
+  </tr>
+  @for (entrada of entriesList; track entrada; let i = $index){
+  <tr *ngIf="isIncome">
+    <td class="eg-txt-conf" *ngIf="isIncome && entrada.isIncome" [ngClass]="isIncome ? 'ingress-text' : 'egress-text'">
+      {{ entrada.reason }}
+    </td>
+    <td *ngIf="isIncome && entrada.isIncome" [ngClass]="isIncome ? 'ingress-text' : 'egress-text'">
+      {{ entrada.money | currency : "USD" }}$
+    </td>
+    <button
+      [ngClass]="isIncome ? 'ingress-text' : 'egress-text'"
+      class="btnDelete"
+      *ngIf="isIncome && entrada.isIncome"
+      (click)="deleteRegistry(entrada)"
+    >
+      <ion-icon name="close-circle-outline"></ion-icon>
+    </button>
+  </tr>
+  } @for (entrada of entriesList; track entrada; let i = $index){
+  <tr *ngIf="!isIncome">
+    <td class="eg-txt-conf" [ngClass]="isIncome ? 'ingress-text' : 'egress-text'" *ngIf="!isIncome && !entrada.isIncome" >
+      {{ entrada.reason }}
+    </td>
+    <td [ngClass]="isIncome ? 'ingress-text' : 'egress-text'" *ngIf="!isIncome && !entrada.isIncome">
+      {{ entrada.money | currency : "USD" }}$
+    </td>
+    @if (entrada.percentage != numInf && !entrada.isIncome){
+      <td class="egress-percentage">{{ entrada.percentage | percent }}</td>
+    }
+    <button
+      [ngClass]="isIncome ? 'ingress-text' : 'egress-text'"
+      class="btnDelete"
+      *ngIf="!isIncome && !entrada.isIncome"
+      (click)="deleteRegistry(entrada)"
+    >
+      <ion-icon name="close-circle-outline"></ion-icon>
+    </button>
+  </tr>
   }
 </table>
-<table class="tableMoney egress-table">
-    <tr>
-        <th class="title-table egress-text">Egreso</th>
-    </tr>
-    @for (entrada of entriesList; track entrada; let i = $index){
-        @if(!entrada.isIncome){
-            <tr>
-                <td class="egress-text">{{entrada.reason}}</td>
-                <td class="egress-text">-{{entrada.money | currency: 'USD'}}$</td>
-                @if (entrada.percentage != numInf){
-                  <td class="egress-percentage">{{entrada.percentage | percent}}</td>
-                }
-                <button (click)="deleteRegistry(entrada)"><ion-icon name="close-circle-outline"></ion-icon></button>
-            </tr>
-        }
-      }
-</table>
+<div class="UI-buttons">
+  <button class="ingressBtn" *ngIf="sizeScreen <= 500" (click)="setIncome()">
+    Ver tabla de ingresos
+  </button>
+  <button class="egressBtn" *ngIf="sizeScreen <= 500" (click)="setOutcome()">
+    Ver tabla de egresos
+  </button>
+</div>

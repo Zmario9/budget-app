@@ -44,7 +44,7 @@ app-budget-form{
 
 app-table-chart{
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     gap: 12px;
     justify-content: center;
     align-items: center;
@@ -53,6 +53,15 @@ app-table-chart{
     padding: {
         bottom: 10px;
     }
+}
+
+@media only screen and (max-width: 500px){
+    app-table-chart{
+        padding: {
+            top: 20px;
+        }
+    }
+
 }
 
 @media only screen and (max-width: 400px){

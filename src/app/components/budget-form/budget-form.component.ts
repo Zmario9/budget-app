@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MoneyManagementService } from '../../services/money-management.service';
-import { moneyMovement } from '../../models/form.model';
 import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-budget-form',
   standalone: true,
-  imports: [FormsModule, NgClass],
+  imports: [FormsModule, NgClass, ReactiveFormsModule],
   templateUrl: './budget-form.component.html',
   styleUrl: './budget-form.component.scss'
 })
@@ -23,17 +22,20 @@ export class BudgetFormComponent {
   constructor(public moneyManagement: MoneyManagementService) { }
 
   sendForm() {
-    if (this.reasonInput.trim() === '' || this.moneyInput <= 0) {
-      return alert('Rellena los campos');
+    const inputValue = this.reasonInput.trim();
+    console.log(inputValue);
+    if (inputValue === '' || this.moneyInput <= 0) {
+      console.log('No se ha podido añadir el movimiento');
+      return;
     }
-    console.log(this.selectedOption);
-    console.log(typeof this.selectedOption);
     if (this.selectedOption === "1") {
-      this.moneyManagement.addMovement(this.reasonInput, this.moneyInput, true);
+      this.moneyManagement.addMovement(inputValue, this.moneyInput, true);
     } else {
       //this.moneyInput / this.moneyManagement.ingresoTotal * 100
-      this.moneyManagement.addMovement(this.reasonInput, this.moneyInput, false);
+      this.moneyManagement.addMovement(inputValue, this.moneyInput, false);
     }
+    this.moneyInput = 0;
+    this.reasonInput = '';
     this.moneyManagement.sendlist.emit(this.moneyManagement.arrayMovements);
   }
 }

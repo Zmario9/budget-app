@@ -1,94 +1,128 @@
-@import '../sass-variables/_variables.scss';
-@import '../sass-variables/_placeholders.scss';
+@import "../sass-variables/_variables.scss";
+@import "../sass-variables/_placeholders.scss";
+@import "../sass-variables/_mixings.scss";
 
-form{
-    // display: flex;
-    // flex-flow: row wrap;
-    display: grid;
-    grid-template-columns: 24% 24% 24% 24%;
-    grid-template-rows: 100%;
-    // grid-template-areas: "select input1 input2 button";
-    gap: 1.3%;
-    // justify-content: center;
-    // align-items: center;
+form {
+  display: grid;
+  // grid-template-columns: 24% 24% 24% 24%;
+  // grid-template-rows: 100%;
+  // grid-template-areas: "select input1 input2 button";
+  // gap: 1.3%;
+  // justify-content: center;
+  // align-items: center;
+  width: 100%;
+  min-height: 100px;
+  & > select,
+  & > input,
+  & > button {
+    align-self: center;
+    justify-self: center;
+    @extend %text-overview-settings;
+    height: $input-size-height;
+    font-size: 1em;
+    transition: 0.5s;
+    // width: 100%;
+  }
+  & > select {
+    min-width: 50px;
+    justify-self: end;
+    width: 25%;
+    font-size: 2rem;
+    border-radius: 5px;
+    &:focus {
+      outline: none;
+    }
+  }
+  & > .input1 {
     width: 100%;
-    min-height: 100px;
-    &>select, &>input, &>button{
-        align-self: center;
-        justify-self: center;
-        @extend %text-overview-settings;
-        height: $input-size-height;
-        font-size: 1em;
-        transition: .5s;
-        // width: 100%;
+  }
+  & > .input2 {
+    width: 100%;
+  }
+  & > input {
+    padding: {
+      left: 12px;
     }
-    &>select{
-        min-width: 50px;
-        justify-self: end;
-        width: 25%;
-        font-size: 2rem;
-        border-radius: 5px;
-        &:focus{
-            outline: none;
-        }
-    }
-    &>.input1{
-        width: 100%;
-    }
-    &>.input2{
-        width: 100%;
-    }
-    &>input{
-        padding: {
-            left:12px;
-        }
-        border-radius: 5px;
-    }
-    &>button{
-        justify-self: start;
-        border-radius: 5px;
-    }
+    border-radius: 5px;
+  }
+  & > button {
+    justify-self: start;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 }
 
-.ingress{
-    border: 3px solid $budget-ingress-color;
+
+.bg-ingress, .bg-egress{
+  animation-duration:.2s; 
+  &:hover{
+    color: white;
+  }
 }
-.egress{
-    border: 3px solid $budget-egress-color;
+.bg-ingress{
+  &:hover{
+    background-color: $budget-ingress-color; 
+  }
+}
+
+.bg-egress{
+  &:hover{
+    background-color: $budget-egress-color;
+  }
+}
+
+
+.ingress {
+  border: 3px solid $budget-ingress-color;
+}
+.egress {
+  border: 3px solid $budget-egress-color;
 }
 
 @media only screen and (max-width: 500px) {
-    form{
-        grid-template-columns: 100%;
-        grid-template-rows: 20% 20% 20% 20%;
-        grid-template-areas: "input1"
-                             "input2"
-                             "select"
-                             "button";
-        // padding: {
-        //     top: 5px;
-        // }
-        gap: 10px;
-        &>select{
-            grid-area: select;
-            height: 50px;
-            width: 20%;
-            justify-self: center;
-        }
-        &>.input1 {
-            grid-area: input1;
-            height: 50px;
-        }
-        &>.input2 {
-            grid-area: input2;
-            height: 50px;
-            width: 50%;
-        }
-        &>button{
-            grid-area: button;
-            height: 50px;
-            width: 25%;
-            justify-self: center;
-        }
+  form {
+    @include glass;
+    height: 170px;
+    position: fixed;
+    bottom: 0;
+    z-index: 999;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    grid-template-rows: 50% 50%;
+    grid-template-areas:
+      "input1 input1 input1"
+      "input2 select button";
+    // grid-column-gap: 5px;
+    & > select {
+      grid-area: select;
+      height: 50px;
+      justify-self: center;
+      width: 90%;
     }
+    & > .input1 {
+      grid-area: input1;
+      height: 50px;
+      // width: 90%;
+    }
+    & > .input2 {
+      grid-area: input2;
+      height: 50px;
+    }
+    & > button {
+      grid-area: button;
+      height: 50px;
+      width: 95%;
+      justify-self: center;
+    }
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  form {
+    grid-template-columns: 24% 24% 24% 24%;
+    grid-template-rows: 100%;
+    grid-template-areas: "select input1 input2 button";
+    gap: 1.3%;
+    justify-content: center;
+    align-items: center;
+  }
 }
